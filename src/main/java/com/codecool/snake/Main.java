@@ -26,7 +26,7 @@ public class Main extends Application {
         layout.setTop(ui);
         layout.setCenter(game);
 
-        Scene mainScene = new Scene(layout, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
+        Scene mainScene = new Scene(layout, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT + ui.getPrefHeight());
 
         primaryStage.setTitle("Snake Game");
         primaryStage.setScene(mainScene);
@@ -45,6 +45,8 @@ public class Main extends Application {
         ui.setSpacing(10);
         ui.setStyle("-fx-border-color: #000000;" +
                 "-fx-background-color: #92cbfc;");
+        ui.setPrefHeight(50);
+        ui.setPrefWidth(Globals.WINDOW_WIDTH);
         ui.getChildren().add(restartButton);
         return ui;
     }
