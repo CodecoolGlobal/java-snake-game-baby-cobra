@@ -2,6 +2,7 @@ package com.codecool.snake;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -43,9 +44,10 @@ public class Main extends Application {
         HBox ui = new HBox();
         ui.setPadding(new Insets(15, 12, 15, 12));
         ui.setSpacing(10);
+        ui.setAlignment(Pos.CENTER_RIGHT);
         ui.setStyle("-fx-border-color: #000000;" +
                 "-fx-background-color: #92cbfc;");
-        ui.setPrefHeight(50);
+        ui.setPrefHeight(60);
         ui.setPrefWidth(Globals.WINDOW_WIDTH);
         ui.getChildren().add(restartButton);
         return ui;
