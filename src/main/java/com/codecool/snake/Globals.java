@@ -1,6 +1,7 @@
 package com.codecool.snake;
 
 import com.codecool.snake.resources.Resources;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -11,7 +12,6 @@ public class Globals {
 
     public static final double WINDOW_WIDTH = 1000;
     public static final double WINDOW_HEIGHT = 700;
-    public int snakeHealth;
     public Pane ui;
 
     public Display display;
@@ -49,6 +49,10 @@ public class Globals {
         Globals.getInstance().display.clear();
         Globals.getInstance().game.init();
         Globals.getInstance().startGame();
+    }
+
+    public void updateHealthOnUi(int snakeHealth) {
+        Globals.getInstance().ui.getChildren().set(1, new Label(String.valueOf(snakeHealth)));
     }
 
     private Globals() {
