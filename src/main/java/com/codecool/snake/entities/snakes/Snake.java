@@ -56,7 +56,7 @@ public class Snake implements Animatable {
 
     public void changeHealth(int diff) {
         health += diff;
-        Globals.getInstance().ui.getChildren().set(2, new Label(String.valueOf(health)));
+        Globals.getInstance().updateHealthOnUi(health);
     }
 
     public int getHealth() {
