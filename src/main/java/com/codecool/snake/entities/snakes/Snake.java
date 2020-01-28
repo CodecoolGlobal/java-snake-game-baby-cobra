@@ -2,12 +2,17 @@ package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.DelayedModificationList;
 import com.codecool.snake.Globals;
+import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.eventhandler.InputHandler;
 
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Snake implements Animatable {
@@ -28,7 +33,6 @@ public class Snake implements Animatable {
     public void step() {
         SnakeControl turnDir = getUserInput();
         head.updateRotation(turnDir, speed);
-
         updateSnakeBodyHistory();
         checkForGameOverConditions();
 
@@ -37,10 +41,12 @@ public class Snake implements Animatable {
 
     private SnakeControl getUserInput() {
         SnakeControl turnDir = SnakeControl.INVALID;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.SPACE)) Utils.rayCastHit(head.getPosition(), 100, this.head);
         return turnDir;
     }
+
 
     public void addPart(int numParts) {
         GameEntity parent = getLastPart();
@@ -66,7 +72,7 @@ public class Snake implements Animatable {
 
     private void updateSnakeBodyHistory() {
         GameEntity prev = head;
-        for(GameEntity currentPart : body.getList()) {
+        for (GameEntity currentPart : body.getList()) {
             currentPart.setPosition(prev.getPosition());
             prev = currentPart;
         }
@@ -75,7 +81,7 @@ public class Snake implements Animatable {
     private GameEntity getLastPart() {
         GameEntity result = body.getLast();
 
-        if(result != null) return result;
+        if (result != null) return result;
         return head;
     }
 }
