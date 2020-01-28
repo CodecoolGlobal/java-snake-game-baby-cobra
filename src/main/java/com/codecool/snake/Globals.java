@@ -2,7 +2,7 @@ package com.codecool.snake;
 
 import com.codecool.snake.resources.Resources;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
+import javafx.scene.input.MouseEvent;
 
 // class for holding all static stuff
 public class Globals {
@@ -40,6 +40,13 @@ public class Globals {
     public void startGame() { gameLoop.start(); }
 
     public void stopGame() { gameLoop.stop(); }
+
+    public void restartGame(MouseEvent mouseEvent) {
+        Globals.getInstance().stopGame();
+        Globals.getInstance().display.clear();
+        Globals.getInstance().game.init();
+        Globals.getInstance().startGame();
+    }
 
     private Globals() {
         // singleton needs the class to have private constructor
