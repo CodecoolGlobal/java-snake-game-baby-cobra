@@ -16,6 +16,7 @@ public abstract class GameEntity extends ImageView {
 
     public void destroy() {
         Globals.getInstance().display.remove(this);
+        Globals.getInstance().removeGameEntity(this);
     }
 
     public Point2D getPosition() {

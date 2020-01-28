@@ -56,4 +56,9 @@ public class Globals {
     public void addGameEntity(GameEntity entity){
         this.gameObjects.add(entity);
     }
+
+    public void removeGameEntity(GameEntity gameEntity){
+        this.gameObjects.remove(gameEntity);
+    }
+
 }
