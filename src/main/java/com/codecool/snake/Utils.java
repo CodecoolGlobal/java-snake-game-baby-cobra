@@ -1,6 +1,7 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.projectile.Laser;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
@@ -61,7 +62,7 @@ public class Utils {
                 hits.add(ge.getClass().toString());
             }
         }
-
+        new Laser(head);
         if (hit.size() > 1){
             System.out.println("hit " + hit.size());
             System.out.println(hits);
