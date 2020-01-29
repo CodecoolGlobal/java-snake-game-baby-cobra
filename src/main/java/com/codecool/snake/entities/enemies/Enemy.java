@@ -40,6 +40,14 @@ public abstract class Enemy extends GameEntity {
         return new Point2D(x, y);
     }
 
+    public static void destroyAllEnemies() {
+        for (GameEntity gameEntity: Globals.getInstance().display.getObjectList()) {
+            if (gameEntity instanceof Enemy) {
+                gameEntity.destroy();
+            }
+        }
+    }
+
     public void setMonsterSpawnCoordinates(Point2D spawnCoordinates) {
         setX(spawnCoordinates.getX());
         setY(spawnCoordinates.getY());

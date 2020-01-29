@@ -23,7 +23,7 @@ public class Globals {
     private GameLoop gameLoop;
     private Resources resources;
 
-    private LinkedList<GameEntity> gameObjects = new LinkedList<GameEntity>();
+    private LinkedList<GameEntity> gameObjects = new LinkedList<>();
 
     public static Globals getInstance() {
         if(instance == null) instance = new Globals();
@@ -40,6 +40,9 @@ public class Globals {
         resources.addImage("SnakeBody", new Image("snake_body.png"));
         resources.addImage("SimpleEnemy", new Image("simple_enemy.png"));
         resources.addImage("PowerUpBerry", new Image("powerup_berry.png"));
+        resources.addImage("Nitro", new Image("nitro.png"));
+        resources.addImage("Bomb", new Image("bomb.png"));
+        resources.addImage("Stopwatch", new Image("stopwatch.png"));
     }
 
     public Image getImage(String name) { return resources.getImage(name); }
@@ -53,6 +56,10 @@ public class Globals {
         Globals.getInstance().display.clear();
         Globals.getInstance().game.init();
         Globals.getInstance().startGame();
+    }
+
+    public void pauseEnemies(int targetFrames) {
+        gameLoop.pauseEnemies(targetFrames);
     }
 
     public void updateHealthOnUi(int snakeHealth) {
