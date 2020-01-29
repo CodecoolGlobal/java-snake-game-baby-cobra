@@ -16,23 +16,32 @@ public abstract class Enemy extends GameEntity {
     public Enemy(int damage) {
         super();
         this.damage = damage;
+        Globals.getInstance().removeGameEntity(this);
         for (GameEntity entity : Globals.getInstance().getGameObjects()) {
-            if (!entity.equals(this)) {
-                entityCoordinates.add(entity.getPosition());
-            }
+            entityCoordinates.add(entity.getPosition());
         }
-        while (entityCoordinates.contains(this.getPosition())) {
-            setMonsterSpawnCoordinates();
+        Point2D newSpawnCoordinate = createSpawnCoordinate();
+        while (entityCoordinates.contains(newSpawnCoordinate)) {
+            newSpawnCoordinate = createSpawnCoordinate();
             System.out.println("monster spawn collision");
         }
+        setMonsterSpawnCoordinates(newSpawnCoordinate);
+        Globals.getInstance().addGameEntity(this);
+
     }
 
     public int getDamage() {
         return damage;
     }
 
-    public void setMonsterSpawnCoordinates() {
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+    public Point2D createSpawnCoordinate() {
+        double x = rnd.nextDouble() * Globals.WINDOW_WIDTH;
+        double y = rnd.nextDouble() * Globals.WINDOW_HEIGHT;
+        return new Point2D(x, y);
+    }
+
+    public void setMonsterSpawnCoordinates(Point2D spawnCoordinates) {
+        setX(spawnCoordinates.getX());
+        setY(spawnCoordinates.getY());
     }
 }
