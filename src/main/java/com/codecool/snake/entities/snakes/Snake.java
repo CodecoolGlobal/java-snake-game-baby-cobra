@@ -8,6 +8,7 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.eventhandler.InputHandler;
 
 import javafx.geometry.Point2D;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;
@@ -61,6 +62,11 @@ public class Snake implements Animatable {
 
     public void changeHealth(int diff) {
         health += diff;
+        Globals.getInstance().updateHealthOnUi(health);
+    }
+
+    public int getHealth() {
+        return health;
     }
 
     private void checkForGameOverConditions() {
