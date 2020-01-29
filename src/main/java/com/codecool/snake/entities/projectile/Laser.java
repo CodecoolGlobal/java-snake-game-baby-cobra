@@ -11,8 +11,8 @@ import javafx.scene.paint.Color;
 public class Laser extends GameEntity {
     public Laser(SnakeHead start) {
 //        Globals.getInstance().addGameEntity(this);
-        Point2D end = Utils.rayCastEndpoint(start.getPosition(), start.getRotate(), 1000);
-
+        Point2D end = Utils.rayCastEndpoint(start.getPosition(), start.getRotate(), 500);
+        Point2D position = Utils.rayCastEndpoint(start.getPosition(),start.getRotate(),500 /2)
         int width = 10;
         int height = 500;
         int pixels[] = new int[width * height];
@@ -29,10 +29,10 @@ public class Laser extends GameEntity {
                 pixels[index] = newArgb;
             }
         }
-
         WritableImage wi = new WritableImage(width, height);
         PixelWriter pw = wi.getPixelWriter();
         pw.setPixels(0, 0, (int) width, height, WritablePixelFormat.getIntArgbInstance(), pixels, 0, 10);
+
         setImage(wi);
         this.setTranslateX(wi.getWidth() / 2);
         this.setTranslateY(wi.getHeight() / 2);
@@ -41,5 +41,7 @@ public class Laser extends GameEntity {
         this.setTranslateY(-wi.getHeight() / 2);
         setX(start.getX() + (start.getImage().getWidth() / 2));
         setY(start.getY() + (start.getImage().getHeight() / 2));
+        System.out.println(end.toString());
+        System.out.println(start.getPosition().toString());
      }
 }
