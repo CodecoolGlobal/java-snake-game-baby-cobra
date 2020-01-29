@@ -38,6 +38,7 @@ public class Globals {
         resources.addImage("PowerUpBerry", new Image("powerup_berry.png"));
         resources.addImage("Nitro", new Image("nitro.png"));
         resources.addImage("Bomb", new Image("bomb.png"));
+        resources.addImage("Stopwatch", new Image("stopwatch.png"));
     }
 
     public Image getImage(String name) { return resources.getImage(name); }
@@ -51,6 +52,10 @@ public class Globals {
         Globals.getInstance().display.clear();
         Globals.getInstance().game.init();
         Globals.getInstance().startGame();
+    }
+
+    public void pauseEnemies(int targetFrames) {
+        gameLoop.pauseEnemies(targetFrames);
     }
 
     public void updateHealthOnUi(int snakeHealth) {

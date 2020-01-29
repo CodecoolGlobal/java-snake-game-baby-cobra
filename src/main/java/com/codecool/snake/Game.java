@@ -4,6 +4,7 @@ import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.Bomb;
 import com.codecool.snake.entities.powerups.Nitro;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
+import com.codecool.snake.entities.powerups.Stopwatch;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 import javafx.geometry.Point2D;
@@ -27,7 +28,7 @@ public class Game extends Pane {
     public void init() {
         spawnSnake();
         spawnEnemies(4);
-        spawnPowerUps(4);
+        spawnPowerUps(3);
         Globals.getInstance().updateHealthOnUi(snake.getHealth());
 
         GameLoop gameLoop = new GameLoop(snake);
@@ -55,6 +56,7 @@ public class Game extends Pane {
             new Nitro();
         }
         new Bomb();
+        new Stopwatch();
     }
 
     private void setupInputHandling() {

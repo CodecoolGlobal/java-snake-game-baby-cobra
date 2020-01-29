@@ -9,6 +9,7 @@ import com.codecool.snake.entities.powerups.Bomb;
 import com.codecool.snake.entities.powerups.Nitro;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 
+import com.codecool.snake.entities.powerups.Stopwatch;
 import javafx.geometry.Point2D;
 
 
@@ -53,11 +54,10 @@ public class SnakeHead extends GameEntity implements Interactable {
             snake.changeSpeed(0.25f);
         }
         if(entity instanceof Bomb) {
-            for (GameEntity gameEntity: Globals.getInstance().display.getObjectList()) {
-                if (gameEntity instanceof Enemy) {
-                    gameEntity.destroy();
-                }
-            }
+            Enemy.destroyAllEnemies();
+        }
+        if(entity instanceof Stopwatch) {
+            Globals.getInstance().pauseEnemies(120);
         }
     }
 
