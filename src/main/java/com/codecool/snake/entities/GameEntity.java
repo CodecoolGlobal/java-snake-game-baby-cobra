@@ -1,7 +1,6 @@
 package com.codecool.snake.entities;
 
 import com.codecool.snake.Globals;
-
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 
@@ -10,10 +9,12 @@ public abstract class GameEntity extends ImageView {
 
     protected GameEntity() {
         Globals.getInstance().display.add(this);
+        Globals.getInstance().addGameEntity(this);
     }
 
     public void destroy() {
         Globals.getInstance().display.remove(this);
+        Globals.getInstance().removeGameEntity(this);
     }
 
     public Point2D getPosition() {

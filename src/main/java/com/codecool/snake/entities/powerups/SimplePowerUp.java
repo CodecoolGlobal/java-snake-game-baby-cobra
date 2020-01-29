@@ -11,6 +11,7 @@ public class SimplePowerUp extends GameEntity implements Interactable {
     private static Random rnd = new Random();
 
     public SimplePowerUp() {
+        super();
         setImage(Globals.getInstance().getImage("PowerUpBerry"));
 
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);

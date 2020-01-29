@@ -1,8 +1,11 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.resources.Resources;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+
+import java.util.LinkedList;
 
 // class for holding all static stuff
 public class Globals {
@@ -17,6 +20,7 @@ public class Globals {
     private GameLoop gameLoop;
     private Resources resources;
 
+    private LinkedList<GameEntity> gameObjects = new LinkedList<GameEntity>();
 
     public static Globals getInstance() {
         if(instance == null) instance = new Globals();
@@ -51,4 +55,17 @@ public class Globals {
     private Globals() {
         // singleton needs the class to have private constructor
     }
+
+    public LinkedList<GameEntity> getGameObjects() {
+        return this.gameObjects;
+    }
+
+    public void addGameEntity(GameEntity entity){
+        this.gameObjects.add(entity);
+    }
+
+    public void removeGameEntity(GameEntity gameEntity){
+        this.gameObjects.remove(gameEntity);
+    }
+
 }
