@@ -1,6 +1,7 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.powerups.Bomb;
 import com.codecool.snake.entities.powerups.Nitro;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
@@ -53,7 +54,7 @@ public class Game extends Pane {
             new SimplePowerUp();
             new Nitro();
         }
-
+        new Bomb();
     }
 
     private void setupInputHandling() {

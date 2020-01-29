@@ -5,6 +5,7 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
+import com.codecool.snake.entities.powerups.Bomb;
 import com.codecool.snake.entities.powerups.Nitro;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 
@@ -50,6 +51,13 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
         if(entity instanceof Nitro) {
             snake.changeSpeed(0.25f);
+        }
+        if(entity instanceof Bomb) {
+            for (GameEntity gameEntity: Globals.getInstance().display.getObjectList()) {
+                if (gameEntity instanceof Enemy) {
+                    gameEntity.destroy();
+                }
+            }
         }
     }
 
