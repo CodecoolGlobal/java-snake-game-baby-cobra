@@ -27,7 +27,7 @@ public class Globals {
     private LinkedList<GameEntity> gameObjects = new LinkedList<>();
 
     public static Globals getInstance() {
-        if(instance == null) instance = new Globals();
+        if (instance == null) instance = new Globals();
         return instance;
     }
 
@@ -49,11 +49,17 @@ public class Globals {
         resources.addImage("Ogre_right", new Image("ogre_right.png"));
     }
 
-    public Image getImage(String name) { return resources.getImage(name); }
+    public Image getImage(String name) {
+        return resources.getImage(name);
+    }
 
-    public void startGame() { gameLoop.start(); }
+    public void startGame() {
+        gameLoop.start();
+    }
 
-    public void stopGame() { gameLoop.stop(); }
+    public void stopGame() {
+        gameLoop.stop();
+    }
 
     public void restartGame(MouseEvent mouseEvent) {
         Globals.getInstance().stopGame();
@@ -78,11 +84,11 @@ public class Globals {
         return this.gameObjects;
     }
 
-    public void addGameEntity(GameEntity entity){
+    public void addGameEntity(GameEntity entity) {
         this.gameObjects.add(entity);
     }
 
-    public void removeGameEntity(GameEntity gameEntity){
+    public void removeGameEntity(GameEntity gameEntity) {
         this.gameObjects.remove(gameEntity);
     }
 

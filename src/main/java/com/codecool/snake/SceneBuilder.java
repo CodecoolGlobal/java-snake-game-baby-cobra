@@ -23,10 +23,10 @@ public class SceneBuilder {
         gameOverBox.setMinHeight(Globals.WINDOW_HEIGHT);
         gameOverBox.setHgap(10);
         gameOverBox.setVgap(10);
-        gameOverBox.setPadding(new Insets(10,10,10,10));
+        gameOverBox.setPadding(new Insets(10, 10, 10, 10));
 
         ImageView youDied = new ImageView(new Image("youdied.jpg"));
-        gameOverBox.add(youDied, 0 ,0);
+        gameOverBox.add(youDied, 0, 0);
 
         Text displayScore = new Text("Score: " + score);
         displayScore.setFont(Font.font("Arial", FontWeight.NORMAL, 36));

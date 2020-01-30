@@ -1,6 +1,5 @@
 package com.codecool.snake.entities.enemies;
 
-import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
@@ -18,7 +17,7 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
     private int speed = 1;
 
     public SimpleEnemy() {
-        super("SimpleEnemy",10);
+        super("SimpleEnemy", 10);
 
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
@@ -29,7 +28,7 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
     public void step() {
         if (isOutOfBounds()) {
             double randomMultiplier = Utils.glanceOfRandomizer();
-            direction = direction - 180+randomMultiplier;
+            direction = direction - 180 + randomMultiplier;
             heading = Utils.directionToVector(direction, speed);
             setRotate(direction);
 

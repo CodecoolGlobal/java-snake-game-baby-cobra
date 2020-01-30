@@ -14,7 +14,7 @@ public class Resources {
 
     public Image getImage(String name) {
         Image result = images.get(name);
-        if(result == null) System.out.println("ERROR: Image not found: " + name);
+        if (result == null) System.out.println("ERROR: Image not found: " + name);
         return result;
     }
 }

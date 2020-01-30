@@ -37,12 +37,12 @@ public abstract class Enemy extends GameEntity {
     public Point2D createSpawnCoordinate() {
         double x = rnd.nextDouble() * (Globals.WINDOW_WIDTH - this.getImage().getWidth());
         double y = rnd.nextDouble() * (Globals.WINDOW_HEIGHT - this.getImage().getHeight() -
-                                                                Globals.getInstance().ui.getPrefHeight());
+                Globals.getInstance().ui.getPrefHeight());
         return new Point2D(x, y);
     }
 
     public static void destroyAllEnemies() {
-        for (GameEntity gameEntity: Globals.getInstance().display.getObjectList()) {
+        for (GameEntity gameEntity : Globals.getInstance().display.getObjectList()) {
             if (gameEntity instanceof Enemy) {
                 gameEntity.destroy();
             }

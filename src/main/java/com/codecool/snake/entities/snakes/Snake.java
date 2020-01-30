@@ -37,7 +37,8 @@ public class Snake implements Animatable {
         SnakeControl turnDir = SnakeControl.INVALID;
         if (InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
         if (InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
-        if (InputHandler.getInstance().isKeyPressed(KeyCode.SPACE)) Utils.rayCastHit(head.getPosition(), 100, this.head);
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.SPACE))
+            Utils.rayCastHit(head.getPosition(), 100, this.head);
         return turnDir;
     }
 
@@ -72,7 +73,7 @@ public class Snake implements Animatable {
 
     private int countBodyLength() {
         int size = 0;
-        for (GameEntity part: body.getList()) {
+        for (GameEntity part : body.getList()) {
             size++;
         }
         return size;

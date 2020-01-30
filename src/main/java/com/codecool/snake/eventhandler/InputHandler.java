@@ -10,7 +10,7 @@ public class InputHandler {
     private HashMap<KeyCode, Boolean> keyStates = new HashMap<>();
 
     public static InputHandler getInstance() {
-        if(instance == null) instance = new InputHandler();
+        if (instance == null) instance = new InputHandler();
         return instance;
     }
 
@@ -23,7 +23,7 @@ public class InputHandler {
     }
 
     public Boolean isKeyPressed(KeyCode key) {
-        if(keyStates.containsKey(key)) return keyStates.get(key);
+        if (keyStates.containsKey(key)) return keyStates.get(key);
         return false;
     }
 

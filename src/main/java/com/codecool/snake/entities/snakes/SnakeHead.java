@@ -13,8 +13,6 @@ import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.powerups.Stopwatch;
 import javafx.geometry.Point2D;
 
-import java.util.Random;
-
 
 public class SnakeHead extends GameEntity implements Interactable {
     private static final float turnRate = 2;
@@ -60,7 +58,7 @@ public class SnakeHead extends GameEntity implements Interactable {
         if (entity instanceof Stopwatch) {
             Globals.getInstance().pauseEnemies(120);
         }
-        if(entity instanceof Ogre) {
+        if (entity instanceof Ogre) {
             snake.changeHealth(-((Enemy) entity).getDamage());
         }
         if (entity instanceof Rat) {

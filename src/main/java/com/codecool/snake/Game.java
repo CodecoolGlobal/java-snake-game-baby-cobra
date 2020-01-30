@@ -49,7 +49,7 @@ public class Game extends Pane {
     }
 
     private void spawnEnemies(int numberOfEnemies) {
-        for(int i = 0; i < numberOfEnemies; ++i){
+        for (int i = 0; i < numberOfEnemies; ++i) {
             new SimpleEnemy();
             new Rat();
         }

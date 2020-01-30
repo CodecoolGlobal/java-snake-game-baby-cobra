@@ -16,7 +16,7 @@ public class Ogre extends Enemy implements Animatable, Interactable {
     private String imageName = "Ogre_right";
 
     public Ogre() {
-        super("Ogre_right",30);
+        super("Ogre_right", 30);
 
         heading = Utils.directionToVector(dir, speed);
     }

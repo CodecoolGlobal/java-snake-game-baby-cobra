@@ -21,7 +21,7 @@ public class Main extends Application {
         layout.setCenter(Globals.getInstance().game);
 
         Scene mainScene = new Scene(layout, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT +
-                                                                        Globals.getInstance().ui.getPrefHeight());
+                Globals.getInstance().ui.getPrefHeight());
 
         primaryStage.setTitle("Snake Game");
         primaryStage.setScene(mainScene);

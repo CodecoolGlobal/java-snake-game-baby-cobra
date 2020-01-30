@@ -14,7 +14,7 @@ public abstract class PowerUp extends GameEntity implements Interactable {
 
         setX(rnd.nextDouble() * (Globals.WINDOW_WIDTH - this.getImage().getWidth()));
         setY(rnd.nextDouble() * (Globals.WINDOW_HEIGHT - this.getImage().getHeight()
-                                                        - Globals.getInstance().ui.getPrefHeight()));
+                - Globals.getInstance().ui.getPrefHeight()));
     }
 
 }

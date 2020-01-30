@@ -3,8 +3,6 @@ package com.codecool.snake.entities.powerups;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
 
-import java.util.Random;
-
 
 public class SimplePowerUp extends PowerUp {
 
@@ -14,7 +12,7 @@ public class SimplePowerUp extends PowerUp {
 
     @Override
     public void apply(GameEntity entity) {
-        if(entity instanceof SnakeHead){
+        if (entity instanceof SnakeHead) {
             System.out.println(getMessage());
             destroy();
         }
