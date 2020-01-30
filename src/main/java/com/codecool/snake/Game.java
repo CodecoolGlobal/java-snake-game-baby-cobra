@@ -1,5 +1,6 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.enemies.Ogre;
 import com.codecool.snake.entities.enemies.Rat;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.Bomb;
@@ -52,6 +53,7 @@ public class Game extends Pane {
             new SimpleEnemy();
             new Rat();
         }
+        new Ogre();
     }
 
     private void spawnPowerUps(int numberOfPowerUps) {

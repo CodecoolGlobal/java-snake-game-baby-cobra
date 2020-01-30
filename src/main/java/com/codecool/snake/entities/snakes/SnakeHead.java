@@ -5,11 +5,15 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
+import com.codecool.snake.entities.enemies.Ogre;
+import com.codecool.snake.entities.enemies.Rat;
 import com.codecool.snake.entities.powerups.Bomb;
 import com.codecool.snake.entities.powerups.Nitro;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.powerups.Stopwatch;
 import javafx.geometry.Point2D;
+
+import java.util.Random;
 
 
 public class SnakeHead extends GameEntity implements Interactable {
@@ -55,6 +59,12 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
         if (entity instanceof Stopwatch) {
             Globals.getInstance().pauseEnemies(120);
+        }
+        if(entity instanceof Ogre) {
+            snake.changeHealth(-((Enemy) entity).getDamage());
+        }
+        if (entity instanceof Rat) {
+            snake.changeHealth(((Enemy) entity).getDamage());
         }
     }
 

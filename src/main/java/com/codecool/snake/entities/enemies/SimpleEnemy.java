@@ -38,8 +38,6 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
         heading = Utils.directionToVector(direction, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
-
-
     }
 
 
