@@ -15,10 +15,25 @@ import javafx.util.Duration;
 
 public class Laser extends ImageView {
     public Laser(SnakeHead start, int distance) {
-//        Globals.getInstance().addGameEntity(this);
+        WritableImage wi = getWritableImage(distance);
 
-//        Point2D position = Utils.rayCastEndpoint(new Point2D(0, 0), start.getRotate(), 500 / 2);
+        Pane pane = Globals.getInstance().display.getDisplayPane();
+        setImage(wi);
+        Point2D position = new Point2D(start.getX()+ (start.getImage().getWidth() / 2 ) + (wi.getWidth() /2),start.getY() + (start.getImage().getHeight() /2));
+        Rotate rotate = new Rotate();
+        FadeTransition ft = new FadeTransition(Duration.millis(1000), this);
+        ft.setFromValue(1.0);
+        ft.setToValue(0.0);
+        ft.play();
+        rotate.setPivotX(position.getX());
+        rotate.setPivotY(position.getY());
+        rotate.setAngle(start.getRotate() + 180);
+        setPosition(position);
+        this.getTransforms().add(rotate);
+        pane.getChildren().add(this);
+    }
 
+    private WritableImage getWritableImage(int distance) {
         int width = 10;
         int height = distance;
         int pixels[] = new int[width * height];
@@ -38,35 +53,7 @@ public class Laser extends ImageView {
         WritableImage wi = new WritableImage(width, height);
         PixelWriter pw = wi.getPixelWriter();
         pw.setPixels(0, 0, (int) width, height, WritablePixelFormat.getIntArgbInstance(), pixels, 0, 10);
-
-
-
-        Pane pane = Globals.getInstance().display.getDisplayPane();
-//        pane.setRotate(-start.getRotate());
-        setImage(wi);
-        Point2D position = new Point2D(start.getX()+ (start.getImage().getWidth() / 2 ) + (wi.getWidth() /2),start.getY() + (start.getImage().getHeight() /2));
-//        setTranslateX(start.getX());
-//        setTranslateY(start.getY());
-//        setRotate(start.getRotate());
-        Rotate rotate = new Rotate();
-        FadeTransition ft = new FadeTransition(Duration.millis(1000), this);
-        ft.setFromValue(1.0);
-        ft.setToValue(0.0);
-        ft.play();
-//        rotate.setPivotX(start.getX()+ (start.getImage().getWidth() / 2 ));
-//        rotate.setPivotY(start.getY());
-        rotate.setPivotX(position.getX());
-        rotate.setPivotY(position.getY());
-        rotate.setAngle(start.getRotate() + 180);
-//        setPosition(start.getPosition());
-        setPosition(position);
-//        setX(start.getX() + (start.getImage().getWidth() / 2 ));
-//        setY(start.getY() + start.getImage().getHeight());
-        this.getTransforms().add(rotate);
-//        pane.setRotate(+start.getRotate());
-        pane.getChildren().add(this);
-//        System.out.println("this: " + getX() + " - " + getY());
-//        System.out.println("head " + start.getPosition().getX() + " - " + start.getY());
+        return wi;
     }
 
     public void setPosition(Point2D pos) {
