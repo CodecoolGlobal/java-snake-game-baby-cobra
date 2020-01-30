@@ -95,6 +95,5 @@ public class Snake implements Animatable {
 
     public void changeSpeed(float i) {
         speed += i;
-        System.out.println(speed);
     }
 }

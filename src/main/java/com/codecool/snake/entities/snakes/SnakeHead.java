@@ -42,11 +42,9 @@ public class SnakeHead extends GameEntity implements Interactable {
     @Override
     public void apply(GameEntity entity) {
         if (entity instanceof Enemy) {
-            System.out.println(getMessage());
             snake.changeHealth(-((Enemy) entity).getDamage());
         }
         if (entity instanceof SimplePowerUp) {
-            System.out.println(getMessage());
             snake.addPart(4);
         }
         if (entity instanceof Nitro) {
