@@ -12,33 +12,36 @@ import java.util.Random;
 
 
 public class SimpleEnemy extends Enemy implements Animatable, Interactable {
-
+    private double direction = rnd.nextDouble() * 360;
     private Point2D heading;
     private static Random rnd = new Random();
+    private int speed = 1;
 
     public SimpleEnemy() {
         super(10);
 
         setImage(Globals.getInstance().getImage("SimpleEnemy"));
-
-
-        double direction = rnd.nextDouble() * 360;
         setRotate(direction);
-
-        int speed = 1;
         heading = Utils.directionToVector(direction, speed);
     }
-
 
 
     @Override
     public void step() {
         if (isOutOfBounds()) {
-            destroy();
+            double randomMultiplier = Utils.glanceOfRandomizer();
+            direction = direction - 180+randomMultiplier;
+            heading = Utils.directionToVector(direction, speed);
+            setRotate(direction);
+
         }
+        heading = Utils.directionToVector(direction, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
+
+
     }
+
 
     @Override
     public void apply(GameEntity entity) {

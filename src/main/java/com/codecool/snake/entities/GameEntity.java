@@ -31,7 +31,8 @@ public abstract class GameEntity extends ImageView {
 
     public boolean isOutOfBounds() {
         if (getX() > Globals.WINDOW_WIDTH - this.getImage().getWidth()  || getX() < 0 ||
-            getY() > Globals.WINDOW_HEIGHT - this.getImage().getHeight() || getY() < 0) {
+            getY() > Globals.WINDOW_HEIGHT - this.getImage().getHeight()-60 || getY() < 0) {
+
             return true;
         }
         return false;

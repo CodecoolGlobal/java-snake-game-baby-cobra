@@ -1,14 +1,15 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
-import static java.lang.Math.*;
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 
 public class Utils {
 
@@ -19,6 +20,7 @@ public class Utils {
     public static Point2D directionToVector(double directionInDegrees, double length) {
         double directionInRadians = directionInDegrees / 180 * Math.PI;
         Point2D heading = new Point2D(length * Math.sin(directionInRadians), -length * Math.cos(directionInRadians));
+
         return heading;
     }
 
@@ -35,7 +37,7 @@ public class Utils {
 
 
     public static boolean isIntersect(Point2D p1, Point2D p2, Point2D p3) {
-        return (distance(p1, p3) + distance(p2, p3) < distance(p1, p2) + 5 && distance(p1, p3) + distance(p2, p3) > distance(p1, p2) - 5 );
+        return (distance(p1, p3) + distance(p2, p3) < distance(p1, p2) + 5 && distance(p1, p3) + distance(p2, p3) > distance(p1, p2) - 5);
     }
 
     public static Point2D rayCastEndpoint(Point2D start, Double angle, int distance) {
@@ -44,7 +46,7 @@ public class Utils {
 
         double endX = startX + (Math.cos(Math.toRadians(angle)) * distance);
         double endY = startY + (Math.sin(Math.toRadians(angle)) * distance);
-        return new Point2D(endX,endY);
+        return new Point2D(endX, endY);
     }
 
     public static LinkedList<GameEntity> rayCastHit(Point2D position, int distance, SnakeHead head) {
@@ -53,16 +55,16 @@ public class Utils {
         LinkedList<String> hits = new LinkedList<>();
 
         Point2D start = head.getPosition();
-        Point2D end = rayCastEndpoint(head.getPosition(),head.getRotate(),1000);
+        Point2D end = rayCastEndpoint(head.getPosition(), head.getRotate(), 1000);
 
         for (GameEntity ge : gameObjects) {
-            if (isIntersect(start,end,ge.getPosition())){
+            if (isIntersect(start, end, ge.getPosition())) {
                 hit.add(ge);
                 hits.add(ge.getClass().toString());
             }
         }
 
-        if (hit.size() > 1){
+        if (hit.size() > 1) {
             System.out.println("hit " + hit.size());
             System.out.println(hits);
             System.out.println("=============");
@@ -71,6 +73,10 @@ public class Utils {
         return hit;
     }
 
+    public static double glanceOfRandomizer(){
+        Random rnd = new Random();
+        return rnd.nextDouble()*45-45;
+    }
 
 
 }
