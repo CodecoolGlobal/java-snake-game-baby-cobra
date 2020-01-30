@@ -1,12 +1,9 @@
 package com.codecool.snake.entities.powerups;
 
-import com.codecool.snake.GameLoop;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
-import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.entities.snakes.SnakeHead;
-import com.codecool.snake.eventhandler.InputHandler;
 
 import java.util.Random;
 

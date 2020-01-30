@@ -6,15 +6,8 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.eventhandler.InputHandler;
-
 import javafx.geometry.Point2D;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 
 public class Snake implements Animatable {
     private float speed = 2;
