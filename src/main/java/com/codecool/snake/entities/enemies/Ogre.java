@@ -24,7 +24,6 @@ public class Ogre extends Enemy implements Animatable, Interactable {
 
     @Override
     public void step() {
-        System.out.println(stepCycle);
         if ((stepCycle % 90 == 0) || this.isOutOfBounds()) {
             dir = -dir;
             switchImage();
