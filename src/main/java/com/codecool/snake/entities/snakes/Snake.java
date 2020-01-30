@@ -6,18 +6,11 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.eventhandler.InputHandler;
-
 import javafx.geometry.Point2D;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-
 public class Snake implements Animatable {
-    private static final float speed = 2;
+    private float speed = 2;
     private int health = 100;
 
     private SnakeHead head;
@@ -71,9 +64,18 @@ public class Snake implements Animatable {
 
     private void checkForGameOverConditions() {
         if (head.isOutOfBounds() || health <= 0) {
-            System.out.println("Game Over");
+            System.out.println("Game Over. Body Length: " + countBodyLength());
+            Globals.getInstance().showGameOver(countBodyLength());
             Globals.getInstance().stopGame();
         }
+    }
+
+    private int countBodyLength() {
+        int size = 0;
+        for (GameEntity part: body.getList()) {
+            size++;
+        }
+        return size;
     }
 
     private void updateSnakeBodyHistory() {
@@ -89,5 +91,9 @@ public class Snake implements Animatable {
 
         if (result != null) return result;
         return head;
+    }
+
+    public void changeSpeed(float i) {
+        speed += i;
     }
 }

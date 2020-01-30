@@ -2,7 +2,10 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.enemies.Rat;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.powerups.Bomb;
+import com.codecool.snake.entities.powerups.Nitro;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
+import com.codecool.snake.entities.powerups.Stopwatch;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 import javafx.geometry.Point2D;
@@ -52,7 +55,12 @@ public class Game extends Pane {
     }
 
     private void spawnPowerUps(int numberOfPowerUps) {
-        for(int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
+        for (int i = 0; i < numberOfPowerUps; ++i) {
+            new SimplePowerUp();
+            new Nitro();
+        }
+        new Bomb();
+        new Stopwatch();
     }
 
     private void setupInputHandling() {

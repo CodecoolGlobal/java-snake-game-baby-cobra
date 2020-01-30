@@ -1,7 +1,7 @@
 package com.codecool.snake;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.Snake;
 
@@ -10,8 +10,12 @@ import java.util.List;
 public class GameLoop {
     private Snake snake;
     private boolean running = false;
+    private boolean runningForEnemies = true;
+    private int pauseForFrames;
 
-    public GameLoop(Snake snake) { this.snake = snake; }
+    public GameLoop(Snake snake) {
+        this.snake = snake;
+    }
 
     public void start() {
         running = true;
@@ -21,18 +25,37 @@ public class GameLoop {
         running = false;
     }
 
+    public void pauseEnemies(int pauseForFrames) {
+        runningForEnemies = false;
+        this.pauseForFrames = pauseForFrames;
+    }
+
+    public void startEnemies() {
+        runningForEnemies = true;
+    }
+
     public void step() {
-        if(running) {
+        if (running) {
             snake.step();
+            enemyMovementHandler();
+            checkCollisions();
+        }
+        Globals.getInstance().display.frameFinished();
+    }
+
+    public void enemyMovementHandler() {
+        if (runningForEnemies) {
             for (GameEntity gameObject : Globals.getInstance().display.getObjectList()) {
                 if (gameObject instanceof Animatable) {
                     ((Animatable) gameObject).step();
                 }
             }
-            checkCollisions();
+        } else {
+            pauseForFrames--;
+            if (pauseForFrames == 0) {
+                startEnemies();
+            }
         }
-
-        Globals.getInstance().display.frameFinished();
     }
 
     private void checkCollisions() {
@@ -42,8 +65,8 @@ public class GameLoop {
             if (objToCheck instanceof Interactable) {
                 for (int otherObjIdx = idxToCheck + 1; otherObjIdx < gameObjs.size(); ++otherObjIdx) {
                     GameEntity otherObj = gameObjs.get(otherObjIdx);
-                    if (otherObj instanceof Interactable){
-                        if(objToCheck.getBoundsInParent().intersects(otherObj.getBoundsInParent())){
+                    if (otherObj instanceof Interactable) {
+                        if (objToCheck.getBoundsInParent().intersects(otherObj.getBoundsInParent())) {
                             ((Interactable) objToCheck).apply(otherObj);
                             ((Interactable) otherObj).apply(objToCheck);
                         }

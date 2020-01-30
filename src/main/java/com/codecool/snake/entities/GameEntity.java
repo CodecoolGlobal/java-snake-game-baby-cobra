@@ -1,7 +1,6 @@
 package com.codecool.snake.entities;
 
 import com.codecool.snake.Globals;
-
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
