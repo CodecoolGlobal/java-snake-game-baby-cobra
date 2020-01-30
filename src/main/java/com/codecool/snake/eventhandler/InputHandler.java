@@ -1,8 +1,8 @@
 package com.codecool.snake.eventhandler;
 
-import java.util.HashMap;
-
 import javafx.scene.input.KeyCode;
+
+import java.util.HashMap;
 
 
 public class InputHandler {

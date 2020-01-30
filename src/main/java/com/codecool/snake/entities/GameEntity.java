@@ -1,8 +1,7 @@
 package com.codecool.snake.entities;
 
-import com.codecool.snake.Game;
 import com.codecool.snake.Globals;
-
+import com.codecool.snake.entities.powerups.SimplePowerUp;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 
@@ -17,6 +16,7 @@ public abstract class GameEntity extends ImageView {
 
     public void destroy() {
         Globals.getInstance().display.remove(this);
+        if (this instanceof SimplePowerUp) new SimplePowerUp();
         Globals.getInstance().removeGameEntity(this);
     }
 
@@ -30,8 +30,8 @@ public abstract class GameEntity extends ImageView {
     }
 
     public boolean isOutOfBounds() {
-        if (getX() > Globals.WINDOW_WIDTH || getX() < 0 ||
-            getY() > Globals.WINDOW_HEIGHT || getY() < 0) {
+        if (getX() > Globals.WINDOW_WIDTH - this.getImage().getWidth()  || getX() < 0 ||
+            getY() > Globals.WINDOW_HEIGHT - this.getImage().getHeight() || getY() < 0) {
             return true;
         }
         return false;

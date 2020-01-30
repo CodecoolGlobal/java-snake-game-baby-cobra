@@ -1,12 +1,14 @@
 package com.codecool.snake.entities.snakes;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
+import com.codecool.snake.entities.powerups.Bomb;
+import com.codecool.snake.entities.powerups.Nitro;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
-
+import com.codecool.snake.entities.powerups.Stopwatch;
 import javafx.geometry.Point2D;
 
 
@@ -39,13 +41,20 @@ public class SnakeHead extends GameEntity implements Interactable {
 
     @Override
     public void apply(GameEntity entity) {
-        if(entity instanceof Enemy){
-            System.out.println(getMessage());
-            snake.changeHealth(((Enemy) entity).getDamage());
+        if (entity instanceof Enemy) {
+            snake.changeHealth(-((Enemy) entity).getDamage());
         }
-        if(entity instanceof SimplePowerUp){
-            System.out.println(getMessage());
+        if (entity instanceof SimplePowerUp) {
             snake.addPart(4);
+        }
+        if (entity instanceof Nitro) {
+            snake.changeSpeed(0.25f);
+        }
+        if (entity instanceof Bomb) {
+            Enemy.destroyAllEnemies();
+        }
+        if (entity instanceof Stopwatch) {
+            Globals.getInstance().pauseEnemies(120);
         }
     }
 
