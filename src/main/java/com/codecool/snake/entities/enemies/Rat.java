@@ -13,27 +13,32 @@ import java.util.Random;
 public class Rat extends Enemy implements Animatable, Interactable {
     private Point2D heading;
     private static Random rnd = new Random();
-
+    private double direction = rnd.nextDouble() * 360;
+    private double speed = 1.5;
     public Rat() {
-        super(20);
+        super(-10);
 
         setImage(Globals.getInstance().getImage("Rat"));
 
-
-        double direction = rnd.nextDouble() * 360;
         setRotate(direction);
 
-        int speed = 2;
+
         heading = Utils.directionToVector(direction, speed);
     }
 
     @Override
     public void step() {
         if (isOutOfBounds()) {
-            destroy();
+            double randomMultiplier = Utils.glanceOfRandomizer();
+            direction = direction - 180+randomMultiplier;
+            heading = Utils.directionToVector(direction, speed);
+            setRotate(direction);
+
         }
+        heading = Utils.directionToVector(direction, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
+
     }
 
     @Override

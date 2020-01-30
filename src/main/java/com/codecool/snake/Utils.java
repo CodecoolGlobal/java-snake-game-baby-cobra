@@ -73,9 +73,9 @@ public class Utils {
         return hit;
     }
 
-    public static double glanceOfRandomizer(){
+    public static double glanceOfRandomizer() {
         Random rnd = new Random();
-        return rnd.nextDouble()*45-45;
+        return rnd.nextDouble() * 45 - 45;
     }
 
 
