@@ -7,14 +7,10 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 
 import java.util.Random;
 
-public class Stopwatch extends GameEntity implements Interactable {
-    private static Random random = new Random();
+public class Stopwatch extends PowerUp {
 
     public Stopwatch() {
-        setImage(Globals.getInstance().getImage("Stopwatch"));
-
-        setX(random.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(random.nextDouble() * Globals.WINDOW_HEIGHT);
+        super("Stopwatch");
     }
 
     @Override
