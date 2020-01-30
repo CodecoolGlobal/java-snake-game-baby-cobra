@@ -71,9 +71,18 @@ public class Snake implements Animatable {
 
     private void checkForGameOverConditions() {
         if (head.isOutOfBounds() || health <= 0) {
-            System.out.println("Game Over");
+            System.out.println("Game Over. Body Length: " + countBodyLength());
+            Globals.getInstance().showGameOver(countBodyLength());
             Globals.getInstance().stopGame();
         }
+    }
+
+    private int countBodyLength() {
+        int size = 0;
+        for (GameEntity part: body.getList()) {
+            size++;
+        }
+        return size;
     }
 
     private void updateSnakeBodyHistory() {
