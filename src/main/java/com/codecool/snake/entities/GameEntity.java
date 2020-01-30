@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 public abstract class GameEntity extends ImageView {
 
     protected GameEntity() {
+
         Globals.getInstance().display.add(this);
         Globals.getInstance().addGameEntity(this);
     }

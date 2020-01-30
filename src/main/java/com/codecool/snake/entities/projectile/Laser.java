@@ -4,15 +4,21 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.animation.FadeTransition;
 import javafx.geometry.Point2D;
 import javafx.scene.image.*;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Transform;
+import javafx.util.Duration;
 
-public class Laser extends GameEntity {
+public class Laser extends ImageView {
     public Laser(SnakeHead start) {
 //        Globals.getInstance().addGameEntity(this);
-        Point2D end = Utils.rayCastEndpoint(start.getPosition(), start.getRotate(), 500);
-        Point2D position = Utils.rayCastEndpoint(start.getPosition(),start.getRotate(),500 /2)
+
+//        Point2D position = Utils.rayCastEndpoint(new Point2D(0, 0), start.getRotate(), 500 / 2);
+
         int width = 10;
         int height = 500;
         int pixels[] = new int[width * height];
@@ -33,15 +39,39 @@ public class Laser extends GameEntity {
         PixelWriter pw = wi.getPixelWriter();
         pw.setPixels(0, 0, (int) width, height, WritablePixelFormat.getIntArgbInstance(), pixels, 0, 10);
 
+
+
+        Pane pane = Globals.getInstance().display.getDisplayPane();
+//        pane.setRotate(-start.getRotate());
         setImage(wi);
-        this.setTranslateX(wi.getWidth() / 2);
-        this.setTranslateY(wi.getHeight() / 2);
-        setRotate(start.getRotate());
-        this.setTranslateX(-wi.getWidth() / 2);
-        this.setTranslateY(-wi.getHeight() / 2);
-        setX(start.getX() + (start.getImage().getWidth() / 2));
-        setY(start.getY() + (start.getImage().getHeight() / 2));
-        System.out.println(end.toString());
-        System.out.println(start.getPosition().toString());
-     }
+        Point2D position = new Point2D(start.getX()+ (start.getImage().getWidth() / 2 ) + (wi.getWidth() /2),start.getY() + (start.getImage().getHeight() /2));
+//        setTranslateX(start.getX());
+//        setTranslateY(start.getY());
+//        setRotate(start.getRotate());
+        Rotate rotate = new Rotate();
+        FadeTransition ft = new FadeTransition(Duration.millis(1000), this);
+        ft.setFromValue(1.0);
+        ft.setToValue(0.0);
+        ft.play();
+//        rotate.setPivotX(start.getX()+ (start.getImage().getWidth() / 2 ));
+//        rotate.setPivotY(start.getY());
+        rotate.setPivotX(position.getX());
+        rotate.setPivotY(position.getY());
+        rotate.setAngle(start.getRotate() + 180);
+//        setPosition(start.getPosition());
+        setPosition(position);
+//        setX(start.getX() + (start.getImage().getWidth() / 2 ));
+//        setY(start.getY() + start.getImage().getHeight());
+        this.getTransforms().add(rotate);
+//        pane.setRotate(+start.getRotate());
+        pane.getChildren().add(this);
+//        System.out.println("this: " + getX() + " - " + getY());
+//        System.out.println("head " + start.getPosition().getX() + " - " + start.getY());
+    }
+
+    public void setPosition(Point2D pos) {
+        setX(pos.getX());
+        setY(pos.getY());
+    }
+
 }

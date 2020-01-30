@@ -3,6 +3,7 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.projectile.Laser;
 import com.codecool.snake.entities.snakes.Snake;
+import com.codecool.snake.entities.snakes.SnakeBody;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
 
@@ -36,7 +37,7 @@ public class Utils {
 
 
     public static boolean isIntersect(Point2D p1, Point2D p2, Point2D p3) {
-        return (distance(p1, p3) + distance(p2, p3) < distance(p1, p2) + 5 && distance(p1, p3) + distance(p2, p3) > distance(p1, p2) - 5 );
+        return (distance(p1, p3) + distance(p2, p3) <= distance(p1, p2)  + 1);
     }
 
     public static Point2D rayCastEndpoint(Point2D start, Double angle, int distance) {
@@ -45,33 +46,37 @@ public class Utils {
 
         double endX = startX + (Math.cos(Math.toRadians(angle)) * distance);
         double endY = startY + (Math.sin(Math.toRadians(angle)) * distance);
-        return new Point2D(endX,endY);
+        return new Point2D(endX, endY);
     }
 
     public static LinkedList<GameEntity> rayCastHit(Point2D position, int distance, SnakeHead head) {
-        List<GameEntity> gameObjects = Globals.getInstance().getGameObjects();
+        LinkedList<GameEntity> gameObjects = Globals.getInstance().getGameObjects();
         LinkedList<GameEntity> hit = new LinkedList<>();
         LinkedList<String> hits = new LinkedList<>();
 
         Point2D start = head.getPosition();
-        Point2D end = rayCastEndpoint(head.getPosition(),head.getRotate(),1000);
+        Point2D end = rayCastEndpoint(head.getPosition(), head.getRotate() -90, 1000);
 
         for (GameEntity ge : gameObjects) {
-            if (isIntersect(start,end,ge.getPosition())){
-                hit.add(ge);
-                hits.add(ge.getClass().toString());
+            if (isIntersect(start, end, ge.getPosition())) {
+                if (!(ge instanceof SnakeBody) && !(ge instanceof SnakeHead)) {
+                    hits.add(ge.getClass().toString());
+                    hit.add(ge);
+                }
             }
         }
         new Laser(head);
-        if (hit.size() > 1){
+
+        if (hit.size() > 1) {
             System.out.println("hit " + hit.size());
             System.out.println(hits);
             System.out.println("=============");
         }
-
+        for (GameEntity ge : hit ){
+            ge.destroy();
+        }
         return hit;
     }
-
 
 
 }

@@ -41,4 +41,8 @@ public class Display {
         displayPane.getChildren().clear();
         gameObjects.clear();
     }
+
+    public Pane getDisplayPane() {
+        return displayPane;
+    }
 }
