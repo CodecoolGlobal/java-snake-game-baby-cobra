@@ -49,13 +49,13 @@ public class Utils {
         return new Point2D(endX, endY);
     }
 
-    public static LinkedList<GameEntity> rayCastHit(Point2D position, int distance, SnakeHead head) {
+    public static LinkedList<GameEntity> rayCastHit(int distance, SnakeHead head) {
         LinkedList<GameEntity> gameObjects = Globals.getInstance().getGameObjects();
         LinkedList<GameEntity> hit = new LinkedList<>();
         LinkedList<String> hits = new LinkedList<>();
 
         Point2D start = head.getPosition();
-        Point2D end = rayCastEndpoint(head.getPosition(), head.getRotate() -90, 1000);
+        Point2D end = rayCastEndpoint(head.getPosition(), head.getRotate() -90, distance);
 
         for (GameEntity ge : gameObjects) {
             if (isIntersect(start, end, ge.getPosition())) {
@@ -65,7 +65,7 @@ public class Utils {
                 }
             }
         }
-        new Laser(head);
+        new Laser(head, distance);
 
         if (hit.size() > 1) {
             System.out.println("hit " + hit.size());

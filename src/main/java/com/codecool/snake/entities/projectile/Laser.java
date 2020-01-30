@@ -14,13 +14,13 @@ import javafx.scene.transform.Transform;
 import javafx.util.Duration;
 
 public class Laser extends ImageView {
-    public Laser(SnakeHead start) {
+    public Laser(SnakeHead start, int distance) {
 //        Globals.getInstance().addGameEntity(this);
 
 //        Point2D position = Utils.rayCastEndpoint(new Point2D(0, 0), start.getRotate(), 500 / 2);
 
         int width = 10;
-        int height = 500;
+        int height = distance;
         int pixels[] = new int[width * height];
         int alpha = 0xFF << 24;
         for (int x = 0; x < width; x++) {

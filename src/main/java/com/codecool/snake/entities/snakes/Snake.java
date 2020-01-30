@@ -21,6 +21,7 @@ public class Snake implements Animatable {
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
+    private long lastFired = System.nanoTime();
 
 
     public Snake(Point2D position) {
@@ -43,7 +44,12 @@ public class Snake implements Animatable {
         SnakeControl turnDir = SnakeControl.INVALID;
         if (InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
         if (InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
-        if (InputHandler.getInstance().isKeyPressed(KeyCode.SPACE)) Utils.rayCastHit(head.getPosition(), 1000, this.head);
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.SPACE)) {
+            if (System.nanoTime() - lastFired >= 500000000) {
+                Utils.rayCastHit(1000, this.head);
+                lastFired = System.nanoTime();
+            }
+        }
         return turnDir;
     }
 
