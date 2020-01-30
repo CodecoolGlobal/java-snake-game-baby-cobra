@@ -19,7 +19,7 @@ public class Laser extends ImageView {
 
         Pane pane = Globals.getInstance().display.getDisplayPane();
         setImage(wi);
-        Point2D position = new Point2D(start.getX()+ (start.getImage().getWidth() / 2 ) + (wi.getWidth() /2),start.getY() + (start.getImage().getHeight() /2));
+        Point2D position = new Point2D(start.getX() + (start.getImage().getWidth() / 2) + (wi.getWidth() / 2), start.getY() + (start.getImage().getHeight() / 2));
         Rotate rotate = new Rotate();
         FadeTransition ft = new FadeTransition(Duration.millis(1000), this);
         ft.setFromValue(1.0);
@@ -42,11 +42,11 @@ public class Laser extends ImageView {
             for (int y = 0; y < height; y++) {
                 int index = x + y * width;
                 int argb = pixels[index];
-                int red = 255 * x * y / (width * height);
+//                int red = 255 * x * y / (width * height);
+                int red = (int)Math.pow(((-x /2)+x)*5 + 5,2);
                 int green = (argb >> 8) & 0xFF;
-                int blue = 0 * ((width * height) - x * y)
-                        / (width * height);
-                int newArgb = alpha | (red << 16) | (green << 8) | blue;
+                int blue = 0;
+                int newArgb = 255-red << 24 | (red << 16) | (green << 8) | blue;
                 pixels[index] = newArgb;
             }
         }
