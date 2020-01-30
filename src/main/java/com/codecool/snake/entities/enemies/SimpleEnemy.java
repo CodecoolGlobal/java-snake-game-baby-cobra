@@ -18,9 +18,8 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
     private int speed = 1;
 
     public SimpleEnemy() {
-        super(10);
+        super("SimpleEnemy",10);
 
-        setImage(Globals.getInstance().getImage("SimpleEnemy"));
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
     }

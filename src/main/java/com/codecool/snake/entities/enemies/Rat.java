@@ -15,9 +15,9 @@ public class Rat extends Enemy implements Animatable, Interactable {
     private static Random rnd = new Random();
     private double direction = rnd.nextDouble() * 360;
     private double speed = 1.5;
+
     public Rat() {
-        super(20);
-        setImage(Globals.getInstance().getImage("Rat"));
+        super("Rat", 20);
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
 
@@ -28,7 +28,7 @@ public class Rat extends Enemy implements Animatable, Interactable {
     public void step() {
         if (isOutOfBounds()) {
             double randomMultiplier = Utils.glanceOfRandomizer();
-            direction = direction - 180+randomMultiplier;
+            direction = direction - 180 + randomMultiplier;
             heading = Utils.directionToVector(direction, speed);
             setRotate(direction);
 

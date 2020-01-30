@@ -13,12 +13,11 @@ public class Ogre extends Enemy implements Animatable, Interactable {
     private int speed = 3;
     private double dir = 90;
     private int stepCycle = 0;
-    private String image = "Ogre_right";
+    private String imageName = "Ogre_right";
 
     public Ogre() {
-        super(30);
+        super("Ogre_right",30);
 
-        setImage(Globals.getInstance().getImage(image));
         heading = Utils.directionToVector(dir, speed);
     }
 
@@ -27,7 +26,7 @@ public class Ogre extends Enemy implements Animatable, Interactable {
         if ((stepCycle % 90 == 0) || this.isOutOfBounds()) {
             dir = -dir;
             switchImage();
-            setImage(Globals.getInstance().getImage(image));
+            setImage(Globals.getInstance().getImage(imageName));
         }
         heading = Utils.directionToVector(dir, speed);
         stepCycle++;
@@ -36,10 +35,10 @@ public class Ogre extends Enemy implements Animatable, Interactable {
     }
 
     private void switchImage() {
-        if (image.equals("Ogre_left")) {
-            image = "Ogre_right";
+        if (imageName.equals("Ogre_left")) {
+            imageName = "Ogre_right";
         } else {
-            image = "Ogre_left";
+            imageName = "Ogre_left";
         }
     }
 
