@@ -19,7 +19,7 @@ public class DelayedModificationList<T> {
     }
 
     public void addAll(List<T> objs) {
-        for(T obj : objs) {
+        for (T obj : objs) {
             add(obj);
         }
     }
@@ -33,7 +33,7 @@ public class DelayedModificationList<T> {
     }
 
     public boolean isEmpty() {
-        if(!newObjects.isEmpty() || !objects.isEmpty()) {
+        if (!newObjects.isEmpty() || !objects.isEmpty()) {
             return false;
         }
         return true;
@@ -51,8 +51,8 @@ public class DelayedModificationList<T> {
     }
 
     public T getLast() {
-        if(!newObjects.isEmpty()) return newObjects.get(newObjects.size()-1);
-        if(!objects.isEmpty()) return objects.get(objects.size()-1);
+        if (!newObjects.isEmpty()) return newObjects.get(newObjects.size() - 1);
+        if (!objects.isEmpty()) return objects.get(objects.size() - 1);
         return null;
     }
 

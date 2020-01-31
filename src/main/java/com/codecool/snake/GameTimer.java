@@ -20,13 +20,13 @@ public class GameTimer {
     }
 
     public void setup(Runnable loopMethod) {
-        timer.setCycleCount( Timeline.INDEFINITE );
+        timer.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(frameTime),
                 ae -> loopMethod.run());
 
-        timer.getKeyFrames().add( kf );
+        timer.getKeyFrames().add(kf);
     }
 
     public void play() {

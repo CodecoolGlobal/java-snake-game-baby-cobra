@@ -1,5 +1,7 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.enemies.Ogre;
+import com.codecool.snake.entities.enemies.Rat;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.Bomb;
 import com.codecool.snake.entities.powerups.Nitro;
@@ -27,7 +29,7 @@ public class Game extends Pane {
 
     public void init() {
         spawnSnake();
-        spawnEnemies(10);
+        spawnEnemies(5);
         spawnPowerUps(3);
         Globals.getInstance().updateHealthOnUi(snake.getHealth());
 
@@ -47,7 +49,13 @@ public class Game extends Pane {
     }
 
     private void spawnEnemies(int numberOfEnemies) {
-        for (int i = 0; i < numberOfEnemies; ++i) new SimpleEnemy();
+        for (int i = 0; i < numberOfEnemies; ++i) {
+            new SimpleEnemy();
+            new Rat();
+            if (i % 2 == 1) {
+                new Ogre();
+            }
+        }
     }
 
     private void spawnPowerUps(int numberOfPowerUps) {

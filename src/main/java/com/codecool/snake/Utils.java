@@ -9,6 +9,7 @@ import javafx.geometry.Point2D;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
@@ -22,6 +23,7 @@ public class Utils {
     public static Point2D directionToVector(double directionInDegrees, double length) {
         double directionInRadians = directionInDegrees / 180 * Math.PI;
         Point2D heading = new Point2D(length * Math.sin(directionInRadians), -length * Math.cos(directionInRadians));
+
         return heading;
     }
 
@@ -79,5 +81,9 @@ public class Utils {
         return hit;
     }
 
+    public static double glanceOfRandomizer() {
+        Random rnd = new Random();
+        return rnd.nextDouble() * 45 - 45;
+    }
 
 }

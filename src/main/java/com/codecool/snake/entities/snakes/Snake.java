@@ -78,7 +78,7 @@ public class Snake implements Animatable {
 
     private int countBodyLength() {
         int size = 0;
-        for (GameEntity part: body.getList()) {
+        for (GameEntity part : body.getList()) {
             size++;
         }
         return size;

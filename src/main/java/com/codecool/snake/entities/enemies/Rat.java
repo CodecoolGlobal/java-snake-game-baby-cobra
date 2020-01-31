@@ -9,20 +9,19 @@ import javafx.geometry.Point2D;
 
 import java.util.Random;
 
-
-public class SimpleEnemy extends Enemy implements Animatable, Interactable {
-    private double direction = rnd.nextDouble() * 360;
+public class Rat extends Enemy implements Animatable, Interactable {
     private Point2D heading;
     private static Random rnd = new Random();
-    private int speed = 1;
+    private double direction = rnd.nextDouble() * 360;
+    private double speed = 1.5;
 
-    public SimpleEnemy() {
-        super("SimpleEnemy", 10);
-
+    public Rat() {
+        super("Rat", 20);
+        double direction = rnd.nextDouble() * 360;
         setRotate(direction);
+
         heading = Utils.directionToVector(direction, speed);
     }
-
 
     @Override
     public void step() {
@@ -36,11 +35,12 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
         heading = Utils.directionToVector(direction, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
-    }
 
+    }
 
     @Override
     public void apply(GameEntity entity) {
+
         if (entity instanceof SnakeHead) {
             System.out.println(getMessage());
             destroy();

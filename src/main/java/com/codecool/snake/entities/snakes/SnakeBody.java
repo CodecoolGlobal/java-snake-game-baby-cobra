@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 
-
 public class SnakeBody extends GameEntity {
     private Queue<Point2D> history = new LinkedList<>();
     private static final int historySize = 10;
