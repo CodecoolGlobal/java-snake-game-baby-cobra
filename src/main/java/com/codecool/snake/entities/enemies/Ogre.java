@@ -10,7 +10,7 @@ import javafx.geometry.Point2D;
 
 public class Ogre extends Enemy implements Animatable, Interactable {
     private Point2D heading;
-    private int speed = 3;
+    private int speed = 2;
     private double dir = 90;
     private int stepCycle = 0;
     private String imageName = "Ogre_right";
