@@ -30,7 +30,7 @@ public class Laser extends ImageView {
         rotate.setAngle(start.getRotate() + 180);
         setPosition(position);
         this.getTransforms().add(rotate);
-        pane.getChildren().add(this);
+        pane.getChildren().addAll(this);
     }
 
     private WritableImage getWritableImage(int distance) {
@@ -43,10 +43,10 @@ public class Laser extends ImageView {
                 int index = x + y * width;
                 int argb = pixels[index];
 //                int red = 255 * x * y / (width * height);
-                int red = (int)Math.pow(((-x /2)+x)*5 + 5,2);
+                int red = (int)Math.pow(((-width /2)+x)*5 + 5,2);
                 int green = (argb >> 8) & 0xFF;
                 int blue = 0;
-                int newArgb = 255-red << 24 | (red << 16) | (green << 8) | blue;
+                int newArgb = alpha-red << 24 | (red << 16) | (green << 8) | blue;
                 pixels[index] = newArgb;
             }
         }
