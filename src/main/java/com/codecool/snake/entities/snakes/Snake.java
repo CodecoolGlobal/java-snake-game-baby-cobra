@@ -16,6 +16,7 @@ public class Snake implements Animatable {
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
     private long lastFired = System.nanoTime();
+    private long lastRestart = System.nanoTime();
 
 
     public Snake(Point2D position) {
@@ -44,62 +45,68 @@ public class Snake implements Animatable {
                 lastFired = System.nanoTime();
             }
         }
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.R)) {
+            if (System.nanoTime() - lastRestart >= 500000000) {
+                Globals.getInstance().restartGame();
+                lastRestart = System.nanoTime();
+            }
+        }
         return turnDir;
     }
 
 
-    public void addPart(int numParts) {
-        GameEntity parent = getLastPart();
-        Point2D position = parent.getPosition();
+        public void addPart ( int numParts){
+            GameEntity parent = getLastPart();
+            Point2D position = parent.getPosition();
 
-        for (int i = 0; i < numParts; i++) {
-            SnakeBody newBodyPart = new SnakeBody(position);
-            body.add(newBodyPart);
+            for (int i = 0; i < numParts; i++) {
+                SnakeBody newBodyPart = new SnakeBody(position);
+                body.add(newBodyPart);
+            }
+            Globals.getInstance().display.updateSnakeHeadDrawPosition(head);
         }
-        Globals.getInstance().display.updateSnakeHeadDrawPosition(head);
-    }
 
-    public void changeHealth(int diff) {
-        health += diff;
-        Globals.getInstance().updateHealthOnUi(health);
-    }
+        public void changeHealth ( int diff){
+            health += diff;
+            Globals.getInstance().updateHealthOnUi(health);
+        }
 
-    public int getHealth() {
-        return health;
-    }
+        public int getHealth () {
+            return health;
+        }
 
-    private void checkForGameOverConditions() {
-        if (head.isOutOfBounds() || health <= 0) {
-            System.out.println("Game Over. Body Length: " + countBodyLength());
-            Globals.getInstance().showGameOver(countBodyLength());
-            Globals.getInstance().stopGame();
+        private void checkForGameOverConditions () {
+            if (head.isOutOfBounds() || health <= 0) {
+                System.out.println("Game Over. Body Length: " + countBodyLength());
+                Globals.getInstance().showGameOver(countBodyLength());
+                Globals.getInstance().stopGame();
+            }
+        }
+
+        private int countBodyLength () {
+            int size = 0;
+            for (GameEntity part : body.getList()) {
+                size++;
+            }
+            return size;
+        }
+
+        private void updateSnakeBodyHistory () {
+            GameEntity prev = head;
+            for (GameEntity currentPart : body.getList()) {
+                currentPart.setPosition(prev.getPosition());
+                prev = currentPart;
+            }
+        }
+
+        private GameEntity getLastPart () {
+            GameEntity result = body.getLast();
+
+            if (result != null) return result;
+            return head;
+        }
+
+        public void changeSpeed ( float i){
+            speed += i;
         }
     }
-
-    private int countBodyLength() {
-        int size = 0;
-        for (GameEntity part : body.getList()) {
-            size++;
-        }
-        return size;
-    }
-
-    private void updateSnakeBodyHistory() {
-        GameEntity prev = head;
-        for (GameEntity currentPart : body.getList()) {
-            currentPart.setPosition(prev.getPosition());
-            prev = currentPart;
-        }
-    }
-
-    private GameEntity getLastPart() {
-        GameEntity result = body.getLast();
-
-        if (result != null) return result;
-        return head;
-    }
-
-    public void changeSpeed(float i) {
-        speed += i;
-    }
-}

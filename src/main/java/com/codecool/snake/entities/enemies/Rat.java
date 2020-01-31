@@ -16,7 +16,7 @@ public class Rat extends Enemy implements Animatable, Interactable {
     private double speed = 1.5;
 
     public Rat() {
-        super("Rat", 20);
+        super("Rat", -10);
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
 
@@ -35,7 +35,7 @@ public class Rat extends Enemy implements Animatable, Interactable {
         heading = Utils.directionToVector(direction, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
-
+        setRotate(direction);
     }
 
     @Override

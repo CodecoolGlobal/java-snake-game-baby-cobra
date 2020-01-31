@@ -1,9 +1,11 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.eventhandler.InputHandler;
 import com.codecool.snake.resources.Resources;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -67,6 +69,12 @@ public class Globals {
         Globals.getInstance().game.init();
         Globals.getInstance().startGame();
     }
+    public void restartGame() {
+        Globals.getInstance().stopGame();
+        Globals.getInstance().display.clear();
+        Globals.getInstance().game.init();
+        Globals.getInstance().startGame();
+    }
 
     public void pauseEnemies(int targetFrames) {
         gameLoop.pauseEnemies(targetFrames);
@@ -95,5 +103,6 @@ public class Globals {
     public void showGameOver(int score) {
         GridPane gameOverBox = SceneBuilder.createGameOverPane(score);
         Globals.getInstance().game.getChildren().add(gameOverBox);
+
     }
 }
